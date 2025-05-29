@@ -4,13 +4,13 @@
 
 #define ROWS 9
 #define COLS 9
-// ¨ç¦¡­ì«¬
+// å‡½å¼åŸå‹
 void welcome();
 int pw();
 
 
 // --------------------------------------
-// Åã¥ÜÅwªïµe­±
+// é¡¯ç¤ºæ­¡è¿ç•«é¢
 void welcome() {
     printf("                   .-                                                                               \n");
 	printf("                   -===.                                                                            \n");
@@ -72,24 +72,24 @@ void welcome() {
 	printf("                                                -**######+:                                         \n");
 	printf("                                                 .-=+*+=.                                           \n");
 	system("PAUSE");
-	system("cls");// ²M°£¿Ã¹õ
+	system("cls");// æ¸…é™¤è¢å¹•
 }
 
 // --------------------------------------
-// ±K½XÀË¬d¡A³Ì¦h¤T¦¸
+// å¯†ç¢¼æª¢æŸ¥ï¼Œæœ€å¤šä¸‰æ¬¡
 int pw() {
     int pw = 2025;
     int input, a = 0;
 
     while (a < 3) {
-        printf("\n½Ğ¿é¤J 4 ¦ì¼Æ±K½X (´£¥Ü¡G2025)¡G");
+        printf("\nè«‹è¼¸å…¥ 4 ä½æ•¸å¯†ç¢¼ (æç¤ºï¼š2025)ï¼š");
         scanf("%d", &input);
 
         if (input == pw) {
-            printf("±K½X¥¿½T¡A¶i¤J¨t²Î...\n");
+            printf("å¯†ç¢¼æ­£ç¢ºï¼Œé€²å…¥ç³»çµ±...\n");
             return 1;
         } else {
-            printf("±K½X¿ù»~¡I\n");
+            printf("å¯†ç¢¼éŒ¯èª¤ï¼\n");
             a++;
         }
     }
@@ -104,14 +104,14 @@ void menu() {
     printf("|  d. Exit                           |\n");
     printf("-------------------------------------\n");
 }
-char seats[ROWS][COLS]; // '-'ªÅ¦ì¡A'*'¤w¹w¬ù¡A'@'¼È¿ï
+char seats[ROWS][COLS]; // '-'ç©ºä½ï¼Œ'*'å·²é ç´„ï¼Œ'@'æš«é¸
 
 void initSeats() {
     for (int i = 0; i < ROWS; i++)
         for (int j = 0; j < COLS; j++)
             seats[i][j] = '-';
 
-    // ©T©w³]©w10­Ó¤w¹w¬ù®y¦ì¡]¼ÒÀÀ¹w¬ù¡^
+    // å›ºå®šè¨­å®š10å€‹å·²é ç´„åº§ä½ï¼ˆæ¨¡æ“¬é ç´„ï¼‰
     int fixed[10][2] = {
         {0, 1}, {1, 8}, {3, 5}, {4, 3}, {4, 8},
         {6, 3}, {6, 4}, {7, 3}, {8, 1}, {8, 2}
@@ -135,7 +135,7 @@ void clearScreen() {
 void showSeats(char temp[ROWS][COLS]) {
     printf("\\123456789\n");
     for (int i = 0; i < ROWS; i++) {
-        printf("%d-", 9 - i);  // ±q²Ä9±Æ¼Æ¨ì²Ä1±Æ
+        printf("%d-", 9 - i);  // å¾ç¬¬9æ’æ•¸åˆ°ç¬¬1æ’
         for (int j = 0; j < COLS; j++) {
             if (temp != NULL && temp[i][j] == '@')
                 printf("@");
@@ -177,17 +177,17 @@ int findConsecutiveSeats(int need, int result[4][2]) {
 
 void autoArrange() {
     int n;
-    printf("½Ğ°İ»İ­n´X­Ó®y¦ì¡H(1~4)¡G");
+    printf("è«‹å•éœ€è¦å¹¾å€‹åº§ä½ï¼Ÿ(1~4)ï¼š");
     scanf("%d", &n);
     if (n < 1 || n > 4) {
-        printf("¿é¤J¿ù»~¡C\n");
+        printf("è¼¸å…¥éŒ¯èª¤ã€‚\n");
         return;
     }
 
     int result[4][2]; 
 
     if (!findConsecutiveSeats(n, result)) {
-        printf("µLªk¦w±Æ³sÄò®y¦ì¡C\n");
+        printf("ç„¡æ³•å®‰æ’é€£çºŒåº§ä½ã€‚\n");
         return;
     }
 
@@ -199,14 +199,14 @@ void autoArrange() {
     showSeats(temp);
 
     char confirm;
-    printf("¬O§_º¡·N³o¨Ç®y¦ì¡H(y/n)¡G");
+    printf("æ˜¯å¦æ»¿æ„é€™äº›åº§ä½ï¼Ÿ(y/n)ï¼š");
     scanf(" %c", &confirm);
     if (confirm == 'y') {
         for (int i = 0; i < n; i++)
             seats[result[i][0]][result[i][1]] = '*';
-        printf("¹w¬ù¦¨¥\¡I\n");
+        printf("é ç´„æˆåŠŸï¼\n");
     } else {
-        printf("¤w¨ú®ø¹w¬ù¡C\n");
+        printf("å·²å–æ¶ˆé ç´„ã€‚\n");
     }
 }
 
@@ -217,7 +217,7 @@ void chooseSeats() {
     char temp[ROWS][COLS];
     copySeats(temp, seats);
 
-    printf("½Ğ¿é¤J®y¦ì¡]¦p 1-2¡^¡A¦h­Ó½Ğ¥ÎªÅ®æ¹j¶}¡]Enter µ²§ô¡^¡G\n");
+    printf("è«‹è¼¸å…¥åº§ä½ï¼ˆå¦‚ 1-2ï¼‰ï¼Œå¤šå€‹è«‹ç”¨ç©ºæ ¼éš”é–‹ï¼ˆEnter çµæŸï¼‰ï¼š\n");
     scanf(" %[^\n]", input);
 
     if (strlen(input) == 0)
@@ -227,7 +227,7 @@ void chooseSeats() {
     char *token = strtok(input, " ");
     while (token != NULL) {
         if (sscanf(token, "%d-%d", &r, &c) != 2) {
-            printf("®æ¦¡¿ù»~¡G%s\n", token);
+            printf("æ ¼å¼éŒ¯èª¤ï¼š%s\n", token);
             valid = 0;
             break;
         }
@@ -236,13 +236,13 @@ void chooseSeats() {
         c = c - 1;
 
         if (r < 0 || r >= ROWS || c < 0 || c >= COLS || seats[r][c] == '*') {
-            printf("®y¦ìµL®Ä©Î¤w³Q¹w¬ù¡G%s\n", token);
+            printf("åº§ä½ç„¡æ•ˆæˆ–å·²è¢«é ç´„ï¼š%s\n", token);
             valid = 0;
             break;
         }
 
         if (temp[r][c] == '@') {
-            printf("­«½Æ¿ï¾Ü®y¦ì¡G%s\n", token);
+            printf("é‡è¤‡é¸æ“‡åº§ä½ï¼š%s\n", token);
             valid = 0;
             break;
         }
@@ -254,16 +254,16 @@ void chooseSeats() {
     if (valid) {
         showSeats(temp);
         char confirm;
-        printf("¬O§_½T»{¿ï¾Ü³o¨Ç®y¦ì¡H(y/n)¡G");
+        printf("æ˜¯å¦ç¢ºèªé¸æ“‡é€™äº›åº§ä½ï¼Ÿ(y/n)ï¼š");
         scanf(" %c", &confirm);
         if (confirm == 'y') {
             for (int i = 0; i < ROWS; i++)
                 for (int j = 0; j < COLS; j++)
                     if (temp[i][j] == '@')
                         seats[i][j] = '*';
-            printf("¹w¬ù¦¨¥\¡I\n");
+            printf("é ç´„æˆåŠŸï¼\n");
         } else {
-            printf("¤w¨ú®ø¹w¬ù¡C\n");
+            printf("å·²å–æ¶ˆé ç´„ã€‚\n");
         }
     }
 }
@@ -278,7 +278,7 @@ int main() {
     while (1) {
         clearScreen();
         menu();
-        printf("½Ğ¿é¤J¿ï¶µ¡G");
+        printf("è«‹è¼¸å…¥é¸é …ï¼š");
         scanf(" %c", &option);
 
         switch (option) {
@@ -296,16 +296,16 @@ int main() {
                 break;
             case 'd': {
                 char cont;
-                printf("Continue? (y/n)¡G");
+                printf("Continue? (y/n)ï¼š");
                 scanf(" %c", &cont);
                 if (cont == 'n') {
-                    printf("·PÁÂ¨Ï¥Î¡A¦A¨£¡I\n");
+                    printf("æ„Ÿè¬ä½¿ç”¨ï¼Œå†è¦‹ï¼\n");
                     return 0;
                 }
                 break;
             }
             default:
-                printf("µL®Ä¿ï¶µ¡A½Ğ­«·s¿é¤J¡C\n");
+                printf("ç„¡æ•ˆé¸é …ï¼Œè«‹é‡æ–°è¼¸å…¥ã€‚\n");
                 system("pause");
         }
     }
